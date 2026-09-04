@@ -20,24 +20,24 @@ const carouselClips = [
 const gridVideos = [
   // TODO: this id is 16 characters — real YouTube ids are always 11.
   // Re-copy this one from youtube.com/shorts/THIS_PART
-  { id: 'L7Sap7xHXDQ', title: 'Project title', subtitle: 'A short line about this edit.' },
+  { id: 'L7Sap7xHXDQ', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute' },
   // TODO: same here — re-check against the Shorts url.
-  { id: 'T3350NVuiO4', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'QWuWRI2heT8', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'cLlFcumIX88', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'nOwOXrMM1Cc', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'sXoMiZ5Jcxk', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'EgMVPpOikRs', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'TmT86ojJ5mI', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'tNU5B-J91Vw', title: 'Project title', subtitle: 'A short line about this edit.' },
+  { id: 'T3350NVuiO4', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute.' },
+  { id: 'QWuWRI2heT8', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute' },
+  { id: 'cLlFcumIX88', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute' },
+  { id: 'nOwOXrMM1Cc', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute' },
+  { id: 'sXoMiZ5Jcxk', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute' },
+  { id: 'EgMVPpOikRs', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute' },
+  { id: 'TmT86ojJ5mI', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute' },
+  { id: 'tNU5B-J91Vw', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute' },
 ];
 
 // Your longer-form pieces (horizontal). Add or remove freely —
 // the row scrolls sideways to fit however many you list.
 const horizontalVideos = [
-  { id: 'oB4l0d1KtJs', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'X9QSW_WGAQ0', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: '9Q2Dl4yeZsk&t', title: 'Project title', subtitle: 'A short line about this edit.' },
+  { id: 'oB4l0d1KtJs', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute' },
+  { id: 'X9QSW_WGAQ0', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute' },
+  { id: '9Q2Dl4yeZsk&t', title: 'Turn on audio', subtitle: 'For desktop user press this to unmute' },
 ];
 
 /* =========================================================
