@@ -96,16 +96,14 @@ img, video { max-width: 100%; display: block; }
 /* AFTER */
 .hero {
   display: grid;
-  grid-template-columns: 1.5fr 0.9fr;
-  gap: clamp(2rem, 6vw, 5rem);
+  grid-template-columns: 0.55fr 0.35fr;
+  gap: clamp(2rem, 6vw, 1.25rem);
   align-items: start; /* Changed from center to start */
   max-width: var(--max-width);
   margin-inline: auto;
-  margin-top: 4em;
-  padding: 1rem var(--gutter) clamp(3rem, 8vw, 6rem); /* Reduced top padding to 1rem */
-  min-height: auto; /* Option to remove min-height if it's forcing extra space */
+  margin-top: 2rem;
+  padding: 1rem var(--gutter) clamp(1.5rem, 4vw, 3rem); /* Reduced top padding to 1rem */
 }
-
 /* Eyebrow */
 .hero__eyebrow {
   display: flex;
@@ -464,7 +462,6 @@ img, video { max-width: 100%; display: block; }
   color: var(--eyebrow-color);
   width: fit-content;      /* Keeps the dot and text compact */
 }
-
 .eyebrow__dot {
   width: 8px;
   height: 8px;
@@ -472,7 +469,11 @@ img, video { max-width: 100%; display: block; }
   border-radius: 50%;
   background: var(--eyebrow-dot-color);
 }
-.cta h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+.cta h2 { 
+  font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+  letter-spacing: -0.03ch;
+  font-weight: 650;
+}
 .cta > p { margin: 1rem auto 0; }
 .cta .btn { margin-top: 2rem; }
 .socials { display: flex; gap: 1.5rem; justify-content: center; margin-top: 2.5rem; }
