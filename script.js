@@ -22,14 +22,14 @@ const gridVideos = [
   // Re-copy this one from youtube.com/shorts/THIS_PART
   { id: 'L7Sap7xHXDQ', title: 'Project title', subtitle: 'A short line about this edit.' },
   // TODO: same here — re-check against the Shorts url.
-  { id: '0SY9BKIHFUo', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'GNPQUe7lpOs', title: 'Project title', subtitle: 'A short line about this edit.' },
+  { id: 'T3350NVuiO4', title: 'Project title', subtitle: 'A short line about this edit.' },
+  { id: 'QWuWRI2heT8', title: 'Project title', subtitle: 'A short line about this edit.' },
+  { id: 'cLlFcumIX88', title: 'Project title', subtitle: 'A short line about this edit.' },
+  { id: 'nOwOXrMM1Cc', title: 'Project title', subtitle: 'A short line about this edit.' },
+  { id: 'sXoMiZ5Jcxk', title: 'Project title', subtitle: 'A short line about this edit.' },
+  { id: 'EgMVPpOikRs', title: 'Project title', subtitle: 'A short line about this edit.' },
   { id: 'TmT86ojJ5mI', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'kH1jj_bpn2s', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'cLlFcumIX88', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'XQ-dWQ6KdVw', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'cLlFcumIX88', title: 'Project title', subtitle: 'A short line about this edit.' },
-  { id: 'cLlFcumIX88', title: 'Project title', subtitle: 'A short line about this edit.' },
+  { id: 'tNU5B-J91Vw', title: 'Project title', subtitle: 'A short line about this edit.' },
 ];
 
 // Your longer-form pieces (horizontal). Add or remove freely —
