@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Fritz Lantin</title>
+<meta name="description" content="Get in touch with Fritz Lantin about video editing and motion design work.">
+
+<link rel="icon" href="assets/mylogo-blue.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a href="index.html" class="wordmark">
+    <img src="assets/mylogo-blue.png" alt="Fritz Lantin logo">
+    Fritz Lantin
+  </a>
+
+  <div class="site-header__links">
+    <a href="index.html#work">Works</a>
+    <a href="contact.html" class="btn">Contact</a>
+  </div>
+</header>
+
+<section class="cta" style="border-top: 0;">
+  <a class="eyebrow">
+    <span class="eyebrow__dot"></span>
+    Get in Touch
+  </a>
+  <h2>Let's talk about your project</h2>
+  <p>Tell me a bit about what you're working on, and I'll get back to you.</p>
+
+  <!--
+    This form posts to Formspree (https://formspree.io) — a free service that
+    emails you each submission, with no backend or server code needed.
+
+    To activate it:
+    1. Create a free account at formspree.io and add a new form.
+    2. Copy the endpoint it gives you (looks like https://formspree.io/f/abcdwxyz).
+    3. Paste it into the form's "action" attribute below, replacing YOUR_FORM_ID.
+    Free tier covers 50 submissions/month — plenty for a portfolio contact form.
+
+    Hosting on Netlify instead? You can skip Formspree entirely: add
+    `data-netlify="true"` and a hidden `form-name` input to this <form>,
+    and Netlify will handle submissions for you automatically.
+  -->
+  <form class="contact-form" id="contactForm" action="https://formspree.io/f/xqpkbvgg" method="POST">
+    <input type="hidden" name="_subject" value="New message from the portfolio contact form">
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px;" aria-hidden="true">
+
+    <div class="form-field">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" required autocomplete="name">
+    </div>
+
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required autocomplete="email">
+    </div>
+
+    <div class="form-field">
+      <label for="message">Message</label>
+      <textarea id="message" name="message" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn--large">Send message</button>
+    <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+  </form>
+
+  <div class="contact-alt">
+    <p>Prefer email directly? <a href="mailto:lantinfritz@gmail.com">lantinfritz@gmail.com</a></p>
+    <div class="socials">
+      <a href="#" target="_blank" rel="noopener">Instagram</a>
+      <a href="#" target="_blank" rel="noopener">Vimeo</a>
+      <a href="#" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p>© 2026 Fritz Lantin</p>
+</footer>
+
+<script src="contact.js"></script>
+</body>
+</html>
