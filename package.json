@@ -1,0 +1,19 @@
+{
+  "name": "fritzlantin-portfolio",
+  "version": "1.0.0",
+  "description": "Fritz Lantin Portfolio Preview & Services",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'No build step needed for static site'"
+  },
+  "keywords": [
+    "portfolio",
+    "motion-design",
+    "video"
+  ],
+  "author": "Fritz Lantin",
+  "license": "ISC",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
