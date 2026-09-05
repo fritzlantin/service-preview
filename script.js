@@ -282,12 +282,12 @@ function renderCards(list, containerId, variant) {
 
 /* ---------- Carousel motion: follows scroll, bounces at the ends when idle ----------
    Tune these to taste: */
-const CAROUSEL_COPIES = 2.5;                   // 6 clips × 4 = 24 total slots — fixed, not viewport-based
+const CAROUSEL_COPIES = 2;                   // 6 clips × 4 = 24 total slots — fixed, not viewport-based
 const CAROUSEL_SCROLL_MULTIPLIER = 1;        // 1px scrolled = 1px of carousel motion
 const CAROUSEL_MAX_DELTA_PER_FRAME = 120;    // caps big jumps (anchor-link jumps, fast flings)
 const CAROUSEL_IDLE_DELAY_MS = 500;          // how long scrolling must stop before idle drift starts
 const CAROUSEL_IDLE_BLEND_MS = 400;          // fade time into/out of idle drift
-const CAROUSEL_IDLE_SPEED = 0.02;            // px/ms — how fast it drifts when idle (slow, ambient)
+const CAROUSEL_IDLE_SPEED = 0.015;            // px/ms — how fast it drifts when idle (slow, ambient)
 
 function initCarouselMotion() {
   const section = document.querySelector('.carousel-section');
