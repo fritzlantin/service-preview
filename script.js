@@ -280,14 +280,14 @@ function renderCards(list, containerId, variant) {
   list.forEach((video) => container.appendChild(createVideoCard(video, variant)));
 }
 
-/* ---------- Carousel motion: follows scroll, sways gently when idle ----------
+/* ---------- Carousel motion: follows scroll, bounces at the ends when idle ----------
    Tune these to taste: */
+const CAROUSEL_COPIES = 2.5;                   // 6 clips × 4 = 24 total slots — fixed, not viewport-based
 const CAROUSEL_SCROLL_MULTIPLIER = 1;        // 1px scrolled = 1px of carousel motion
 const CAROUSEL_MAX_DELTA_PER_FRAME = 120;    // caps big jumps (anchor-link jumps, fast flings)
-const CAROUSEL_IDLE_DELAY_MS = 500;          // how long scrolling must stop before idle sway starts
-const CAROUSEL_IDLE_BLEND_MS = 400;          // fade time into/out of idle sway
-const CAROUSEL_IDLE_SPEED = 0.012;           // px/ms — how fast the idle sway drifts (very slow)
-const CAROUSEL_IDLE_PERIOD_MS = 7000;        // one full back-and-forth cycle while idle
+const CAROUSEL_IDLE_DELAY_MS = 500;          // how long scrolling must stop before idle drift starts
+const CAROUSEL_IDLE_BLEND_MS = 400;          // fade time into/out of idle drift
+const CAROUSEL_IDLE_SPEED = 0.02;            // px/ms — how fast it drifts when idle (slow, ambient)
 
 function initCarouselMotion() {
   const section = document.querySelector('.carousel-section');
@@ -297,15 +297,12 @@ function initCarouselMotion() {
 
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // One set's width, from the single copy renderCarousel() already placed.
-  const setWidth = track.scrollWidth;
-  if (!setWidth) return;
-
-  // Add enough extra copies that scrolling never reveals a hard edge, even
-  // on wide screens or with just a couple of clips. These are lightweight
-  // placeholder slots (buildCarouselSlot) — no video is created yet.
-  const copies = Math.min(12, Math.max(3, Math.ceil((window.innerWidth * 3) / setWidth) + 1));
-  for (let i = 1; i < copies; i++) {
+  // A fixed 6×CAROUSEL_COPIES slots — not "however many it takes to fill any
+  // screen width". It bounces back and forth between the two ends instead of
+  // looping infinitely, so the number of real <video> elements that can ever
+  // exist is small and predictable (this — plus mounting on demand below —
+  // is what keeps this from re-fetching far more clips than a visit needs).
+  for (let i = 1; i < CAROUSEL_COPIES; i++) {
     carouselClips.forEach(({ src }) => track.appendChild(buildCarouselSlot(src)));
   }
 
@@ -324,21 +321,26 @@ function initCarouselMotion() {
     track.querySelectorAll('.carousel-clip').forEach(mountCarouselVideo);
   }
 
+  // position is a translateX in px, bounded to [minPos, 0]: 0 shows the very
+  // first slot, minPos shows the very last slot flush against the right edge.
   let position = 0;
+  let minPos = 0;
+  function computeBounds() {
+    minPos = Math.min(0, wrap.clientWidth - track.scrollWidth);
+    position = Math.max(minPos, Math.min(0, position));
+  }
+  computeBounds();
+  window.addEventListener('resize', computeBounds);
+
+  let driftDir = 1; // idle drift direction: 1 = toward the last slot, -1 = back toward the first
   let lastScrollY = window.scrollY;
-  let lastScrollTime = performance.now() - CAROUSEL_IDLE_DELAY_MS; // start in idle sway
+  let lastScrollTime = performance.now() - CAROUSEL_IDLE_DELAY_MS; // start in idle drift
   let lastFrameTime = performance.now();
   let idleWeight = 1;
-  let idlePhase = 0;
   let isHovering = false;
 
   section.addEventListener('mouseenter', () => { isHovering = true; });
   section.addEventListener('mouseleave', () => { isHovering = false; });
-
-  function applyPosition() {
-    const wrapped = ((position % setWidth) + setWidth) % setWidth;
-    track.style.transform = `translateX(${wrapped - setWidth}px)`;
-  }
 
   function frame(now) {
     const dt = Math.min(now - lastFrameTime, 50);
@@ -354,19 +356,21 @@ function initCarouselMotion() {
     const targetIdleWeight = (!isHovering && sinceScroll > CAROUSEL_IDLE_DELAY_MS) ? 1 : 0;
     idleWeight += (targetIdleWeight - idleWeight) * Math.min(dt / CAROUSEL_IDLE_BLEND_MS, 1);
 
-    // Scrolling down moves the strip left-to-right (position increases);
-    // scrolling up moves it right-to-left (position decreases).
+    // Scrolling down moves the strip left-to-right (position toward 0);
+    // scrolling up moves it right-to-left (position toward minPos). Scroll
+    // motion simply stops at either end — nothing more to show past it.
     position += scrollDelta * CAROUSEL_SCROLL_MULTIPLIER * (1 - idleWeight);
 
-    // Slow back-and-forth drift while idle (or hovered — hover also parks it).
-    idlePhase += (dt / CAROUSEL_IDLE_PERIOD_MS) * Math.PI * 2;
-    position += CAROUSEL_IDLE_SPEED * Math.sin(idlePhase) * dt * idleWeight;
+    // Slow drift while idle, reversing direction whenever it hits an end.
+    position += driftDir * CAROUSEL_IDLE_SPEED * dt * idleWeight;
 
-    applyPosition();
+    if (position >= 0) { position = 0; driftDir = -1; }
+    else if (position <= minPos) { position = minPos; driftDir = 1; }
+
+    track.style.transform = `translateX(${position}px)`;
     requestAnimationFrame(frame);
   }
 
-  applyPosition();
   requestAnimationFrame(frame);
 }
 
